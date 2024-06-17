@@ -4,6 +4,8 @@
  */
 package ATTT.Model;
 
+import java.util.List;
+
 /**
  *
  * @author longn
@@ -11,15 +13,19 @@ package ATTT.Model;
 public class Ranking {
     private Integer id, ranking;
     private String description;
-
+    private List<Malware> list_malware;
     public Ranking() {
     }
 
-    public Ranking( Integer ranking, String description) {
-      
-        this.ranking = ranking;
-        this.description = description;
+    public List<Malware> getList_malware() {
+        return list_malware;
     }
+
+    public void setList_malware(List<Malware> list_malware) {
+        this.list_malware = list_malware;
+    }
+
+   
 
     public Integer getId() {
         return id;

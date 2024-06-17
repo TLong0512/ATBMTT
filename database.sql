@@ -42,7 +42,6 @@ create table malware(
     author nvarchar(20),
     born datetime,
     solving text,
-    type_id integer,
     ranking_id integer,
     malware_type_id integer,
     foreign key(malware_type_id) references malware_type(id),
