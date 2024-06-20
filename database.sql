@@ -24,8 +24,7 @@ create table ranking(
 create table type(
 	id integer primary key auto_increment,
     typename nvarchar(15),
-    information text,
-    malware_type_id integer
+    information text
 );
 
 create table malware(
@@ -36,14 +35,17 @@ create table malware(
     original_nation nvarchar(15),
     author nvarchar(20),
     born datetime,
+    description Text,
     solving text,
     ranking_id integer,
-    malware_type_id integer,
     foreign key (ranking_id) references ranking(id)
 );
 
 create table malware_type(
 	id integer primary key auto_increment,
     type_id integer,
-    malware_id integer 
+    malware_id integer ,
+	
+    FOREIGN KEY (type_id) REFERENCES type(id),
+    FOREIGN KEY (malware_id) REFERENCES malware(id)
 );

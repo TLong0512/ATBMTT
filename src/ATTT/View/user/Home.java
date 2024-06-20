@@ -5,10 +5,17 @@
 package ATTT.View.user;
 
 
+import ATTT.Controller.MalwareController;
+import ATTT.Controller.TypeController;
 import ATTT.Dao.DbConnection;
+import ATTT.Dao.MalwareDao;
+import ATTT.Dao.TypeDao;
+import ATTT.Service.MalwareService;
+import ATTT.Service.TypeService;
 import ATTT.View.admin.Signin;
 import ATTT.View.user.Malware.MalwareCategory;
 import ATTT.View.user.Type.TypeDetail;
+import java.util.List;
 
 /**
  *
@@ -43,7 +50,6 @@ public class Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang chủ");
         setLocation(new java.awt.Point(300, 150));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setSize(new java.awt.Dimension(900, 500));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
@@ -57,6 +63,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         searchButton.setText("Tìm ngay");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         allTypeButton.setText("Xem thông tin các loại mã độc");
         allTypeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,12 +169,23 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_allMalwareButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        if(!malwareTextField.getText().equals(""))
+        {
+            String data = malwareTextField.getText();
+
+            MalwareCategory malwareCategory = new MalwareCategory(data);
+            this.setVisible(false);
+            malwareCategory.setVisible(true);
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        DbConnection conn = new DbConnection();
-         conn.getDbConnection();
+  
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -186,10 +208,9 @@ public class Home extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new Home().setVisible(true); 
             }

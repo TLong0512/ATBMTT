@@ -4,13 +4,18 @@
  */
 package ATTT.View.admin;
 
+import ATTT.Controller.AdminController;
+import ATTT.Model.AdminModel;
 import ATTT.View.user.Home;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author longn
  */
 public class Signin extends javax.swing.JFrame {
+    private final AdminController adminController = new AdminController();
+    private AdminModel adminModel = new AdminModel();
 
     /**
      * Creates new form Signin
@@ -31,8 +36,8 @@ public class Signin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
+        usernameText = new javax.swing.JTextField();
+        passwordText = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
 
@@ -50,6 +55,11 @@ public class Signin extends javax.swing.JFrame {
         jLabel3.setText("Mật khẩu");
 
         loginButton.setText("Đăng nhập");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("Thoát");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -79,8 +89,8 @@ public class Signin extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(104, 104, 104)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(username)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(usernameText)
+                                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(185, 185, 185))
         );
         layout.setVerticalGroup(
@@ -91,11 +101,11 @@ public class Signin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernameText, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                    .addComponent(passwordText, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
@@ -111,6 +121,31 @@ public class Signin extends javax.swing.JFrame {
         Home home = new Home();
         home.setVisible(true);this.setVisible(false);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        if(!usernameText.getText().equals("") && ! String.valueOf(passwordText.getPassword()).equals(""))
+        {
+           String username = usernameText.getText();
+           String password = String.valueOf(passwordText.getPassword());
+           adminModel =  adminController.findByInformation(username, password);
+           if(adminModel != null)
+           {
+                  AdminHome adminHome = new AdminHome(adminModel);
+               adminHome.setVisible(true);
+               this.setVisible(false);
+           }
+           else
+           {
+               JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
+           }
+           
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ tên đăng nhập và mật khẩu", "Lỗi đăng nhập", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,11 +175,11 @@ public class Signin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Signin().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Signin().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,7 +188,7 @@ public class Signin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JPasswordField passwordText;
+    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }

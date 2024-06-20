@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author longn
  */
-public class DbConnection {
+public abstract class DbConnection {
     static Connection conn = null;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -28,15 +28,15 @@ public class DbConnection {
             return conn;
 
         } catch (ClassNotFoundException ex1) {
-            JOptionPane.showMessageDialog(null, "Error! Failed to Establish Connection! Please contact your System Administrator!\n\n" + ex1.getMessage(), "ERROR", 0);
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối CSDL", "ERROR", 0);
             return null;
 
         } catch (SQLException ex2) {
-            JOptionPane.showMessageDialog(null, "Error! Failed to Establish Connection! Please contact your System Administrator!\n\n" + ex2.getMessage(), "ERROR", 0);
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối CSDL", "ERROR", 0);
             return null;
 
         } catch (Exception ex3) {
-            JOptionPane.showMessageDialog(null, "Error! Failed to Establish Connection! Please contact your System Administrator!\n\n" + ex3.getMessage(), "ERROR", 0);
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối CSDL", "ERROR", 0);
             return null;
         }
     }

@@ -48,8 +48,8 @@
                               </Group>
                               <EmptySpace min="104" pref="104" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="username" max="32767" attributes="0"/>
-                                  <Component id="password" min="-2" pref="283" max="-2" attributes="0"/>
+                                  <Component id="usernameText" max="32767" attributes="0"/>
+                                  <Component id="passwordText" min="-2" pref="283" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -67,12 +67,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="username" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="usernameText" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel3" max="32767" attributes="0"/>
-                  <Component id="password" pref="42" max="32767" attributes="0"/>
+                  <Component id="passwordText" pref="42" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -109,14 +109,17 @@
         <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="username">
+    <Component class="javax.swing.JTextField" name="usernameText">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="password">
+    <Component class="javax.swing.JPasswordField" name="passwordText">
     </Component>
     <Component class="javax.swing.JButton" name="loginButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exitButton">
       <Properties>

@@ -4,19 +4,29 @@
  */
 package ATTT.View.user.Type;
 
+import ATTT.Controller.TypeController;
+import ATTT.Model.TypeModel;
 import ATTT.View.user.Home;
+import java.util.List;
 
 /**
  *
  * @author longn
  */
 public class TypeDetail extends javax.swing.JFrame {
-
+    private final TypeController typeController = new TypeController();
     /**
      * Creates new form TypeDetail
      */
     public TypeDetail() {
         initComponents();
+        List<TypeModel> typeModels = typeController.findAll();
+        typeComboBox.addItem(new TypeModel());
+        for(TypeModel item : typeModels)
+        {
+            typeComboBox.addItem(item);
+        }
+        
     }
 
     /**
@@ -35,13 +45,14 @@ public class TypeDetail extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         typeInformationTextArea = new javax.swing.JTextArea();
         exitButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        TypeNameLabel = new javax.swing.JLabel();
+        typeNameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chi tiết mã độc");
         setLocation(new java.awt.Point(300, 150));
-        setPreferredSize(new java.awt.Dimension(900, 500));
 
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeComboBoxActionPerformed(evt);
@@ -49,6 +60,11 @@ public class TypeDetail extends javax.swing.JFrame {
         });
 
         filterButton.setText("Lọc");
+        filterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterButtonActionPerformed(evt);
+            }
+        });
 
         searchButton.setText("Tìm kiếm");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -68,41 +84,63 @@ public class TypeDetail extends javax.swing.JFrame {
             }
         });
 
+        TypeNameLabel.setFont(new java.awt.Font("Sitka Heading", 1, 30)); // NOI18N
+        TypeNameLabel.setForeground(new java.awt.Color(255, 0, 51));
+
+        typeNameLabel.setFont(new java.awt.Font("Sitka Heading", 1, 25)); // NOI18N
+        typeNameLabel.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117)
-                        .addComponent(typeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchButton)
-                        .addGap(30, 30, 30))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addGap(404, 404, 404))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(filterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(117, 117, 117)
+                                .addComponent(typeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchButton)
+                                .addGap(30, 30, 30))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(385, 385, 385)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeNameLabel)
+                            .addComponent(TypeNameLabel))))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(filterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(typeComboBox))
+                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(typeTextField)
-                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(typeNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TypeNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton)
                 .addGap(15, 15, 15))
@@ -110,10 +148,6 @@ public class TypeDetail extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeComboBoxActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
@@ -125,6 +159,20 @@ public class TypeDetail extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
+        // TODO add your handling code here:
+        TypeModel typeModel = (TypeModel)(typeComboBox.getSelectedItem());
+        typeNameLabel.setText(typeModel.getTypeName());
+        typeInformationTextArea.setText(typeModel.getInformation());
+    }//GEN-LAST:event_filterButtonActionPerformed
+
+    private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
+        // TODO add your handling code here:
+        TypeModel typeModel = (TypeModel)(typeComboBox.getSelectedItem());
+        typeNameLabel.setText(typeModel.getTypeName());
+        typeInformationTextArea.setText(typeModel.getInformation());
+    }//GEN-LAST:event_typeComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,12 +210,15 @@ public class TypeDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TypeNameLabel;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton filterButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchButton;
-    private javax.swing.JComboBox<String> typeComboBox;
+    private javax.swing.JComboBox<TypeModel> typeComboBox;
     private javax.swing.JTextArea typeInformationTextArea;
+    private javax.swing.JLabel typeNameLabel;
     private javax.swing.JTextField typeTextField;
     // End of variables declaration//GEN-END:variables
 }
