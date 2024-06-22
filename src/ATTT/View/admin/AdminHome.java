@@ -5,6 +5,9 @@
 package ATTT.View.admin;
 
 import ATTT.Model.AdminModel;
+import ATTT.View.admin.Malware.AddMalware;
+import ATTT.View.admin.Malware.ModifyMalware;
+import ATTT.View.admin.Type.ModifyType;
 
 /**
  *
@@ -37,7 +40,6 @@ public class AdminHome extends javax.swing.JFrame {
         adminNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -66,9 +68,6 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Sitka Subheading", 0, 30)); // NOI18N
         jLabel3.setText("Quản lý loại");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton2.setText("Thêm loại");
-
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton3.setText("Bảo trì mã độc");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +81,11 @@ public class AdminHome extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton5.setText("Bảo trì loại");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("------------------------------------------------------------------------------------------------------------------------------------------");
 
@@ -105,20 +109,17 @@ public class AdminHome extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(127, 127, 127)
-                                        .addComponent(jButton4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(127, 127, 127)
-                                        .addComponent(jButton2)))
+                                .addComponent(jLabel2)
+                                .addGap(127, 127, 127)
+                                .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton3))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(173, 173, 173)
+                                .addComponent(jButton5)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(108, 108, 108))))
         );
         layout.setVerticalGroup(
@@ -145,7 +146,6 @@ public class AdminHome extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2)
                     .addComponent(jButton5))
                 .addContainerGap(129, Short.MAX_VALUE))
         );
@@ -161,8 +161,16 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        ModifyMalware modifyMalware = new ModifyMalware();
+        this.setVisible(false);
+        modifyMalware.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.setVisible(false);
+        ModifyType modifyType = new ModifyType();
+        modifyType.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,7 +209,6 @@ public class AdminHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminNameLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

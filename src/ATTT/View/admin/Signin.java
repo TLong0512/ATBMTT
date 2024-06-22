@@ -131,7 +131,7 @@ public class Signin extends javax.swing.JFrame {
            adminModel =  adminController.findByInformation(username, password);
            if(adminModel != null)
            {
-                  AdminHome adminHome = new AdminHome(adminModel);
+               AdminHome adminHome = new AdminHome(adminModel);
                adminHome.setVisible(true);
                this.setVisible(false);
            }

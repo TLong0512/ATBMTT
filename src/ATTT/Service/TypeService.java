@@ -24,6 +24,7 @@ public class TypeService {
     {
         return typeDao.findById(id);
     }
+    
     public List<TypeModel> findListTypeByMalwareId(Integer malwareId)
     {
         List<Integer> typeIds = typeDao.findListTypeIdbByMalwareId(malwareId);
@@ -34,7 +35,7 @@ public class TypeService {
             
             typeModels.add(typeDao.findById(id));
         }
- 
+        
         return typeModels;
     }
 }

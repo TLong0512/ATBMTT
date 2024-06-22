@@ -20,6 +20,13 @@ public class TypeModel {
         this.information = information;
     }
 
+    public TypeModel(String typeName, String information) {
+        this.typeName = typeName;
+        this.information = information;
+    }
+
+    
+    
     public TypeModel() {
     }
 
